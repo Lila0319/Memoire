@@ -1,0 +1,256 @@
+LILA{F1le_UPLOAD_22degu}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; 
+    min-height: 100vh; 
+    
+}
+
+.container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1200px;
+    border: 2px solid #77B5FE; 
+}
+
+.sidebar {
+    width: 200px;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    border-right: 2px solid #77B5FE; 
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-bar {
+ height: 20px; 
+    background-color: #77B5FE; 
+    margin-bottom: 10px;
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #333;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+
+@media (max-width: 600px) {
+    table {
+        border: 0;
+    }
+    table thead {
+        display: none;
+    }
+    table tr {
+        margin-bottom: 10px;
+        display: block;
+    }
+    table td {
+        display: block;
+        text-align: right;
+        font-size: 12px;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #77B5FE;
+}
+
+.content {
+    width: 1200px; 
+    flex: 1; 
+    background-image: url('file:///C:/xampp/htdocs/LM/ifri.png'); 
+    padding: 20px;
+    text-align: center;
+    border-left: 0px solid#77B5FE; 
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    background-color: #77B5FE;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+form {
+    max-width: 600px; 
+    margin: 0 auto; 
+    border: 2px solid #77B5FE;
+    padding: 20px; 
+}
+
+label, input, checkbox {
+    
+    margin-bottom: 20px; }
+h1 {
+    background-color: #77B5FE; 
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.login-box {
+    border: 2px solid #77B5FE;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto; 
+}
+
+
+.green-button {
+    background-color: #77B5FE;
+    color: white; 
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.green-button:hover {
+    background-color: #77B5FE;
+}
+
+ .show-button {
+    background-color: #77B5FE;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.show-button:hover {
+    background-color: #77B5FE;
+}
+
+
+.logout-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+.challenges {
+    display: flex; 
+    flex-wrap: wrap; 
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
+    height: 150px;
+    background-color: whitesmoke ;
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    
+}
+
+.card p {
+    font-size: 14px;
+}
+
+
+
+.card span {
+ color :white ;
+ margin-left :30px;
+}
+#popupContainer {
+    display: none;
+    position: fixed;
+   width: 800px;
+   height:400px;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    color: #77B5FE; 
+        z-index: 1000; }
+
+        .flag {
+            display: flex;
+            align-items: center;
+        }
+        .flag input[type="text"],
+        .flag button {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px; 
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+    box-sizing: border-box; 
+    font-size: 14px;
+
+}
+.flag input[type="text"]{
+    width: 700px;
+}
+
+
+
+        
+        .flag p {
+            margin-top: 20px;
+        }
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        /*TElMQXtlZWoxTF9MMUwyVkNfZGpieG5IfQ== */

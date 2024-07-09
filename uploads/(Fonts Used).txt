@@ -1,0 +1,33 @@
+Fonts Used:
+==========
+
+https://fonts.google.com/specimen/Lato
+https://fonts.google.com/specimen/Open+Sans
+https://fonts.google.com/specimen/Montserrat
+https://fonts.google.com/specimen/Roboto
+
+https://fonts.google.com/specimen/Roboto+Slab
+
+https://fonts.google.com/specimen/Source+Serif+Pro
+
+https://fonts.google.com/specimen/Inconsolata
+
+https://fonts.google.com/specimen/Raleway
+
+https://fonts.google.com/specimen/Kreon
+
+https://fonts.google.com/specimen/Poppins
+
+https://fonts.google.com/specimen/Ubuntu
+
+https://fonts.google.com/specimen/Josefin+Sans
+http://freakfonts.com/fonts/avalon58954.html
+
+
+
+Icons Font:
+=====
+
+https://fontawesome.com/v4.7.0/icons/
+
+https://cdn.materialdesignicons.com/4.9.95/

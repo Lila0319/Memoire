@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/LM
+      - ./php.ini:/php.ini
+
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=
+      - MYSQL_DATABASE=lm
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_DATABASE: lm
+    volumes:
+      - ./lm.sql:/var/www/html/LM/lm.sql
+      
+    
+volumes:
+  db_data:
+  

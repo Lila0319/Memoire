@@ -1,0 +1,235 @@
+Violation de gestion d'authentification et de session
+
+
+1ere methode :
+
+Attaque:
+L'attaquant a partir du code source connait le nom des pages alors :
+En premier lieu il tape "document.cookie" pour voir la valeur du cookie ensuite si c'est une valeur 1 il essaye de deviner la valeur des cookies des autres pages et lance ses commandes : 
+
+1- document.cookie = "mon_cookie=2";
+2-
+a-
+ // Lire le cookie "mon_cookie"
+var cookies = document.cookie.split("; ");
+var cookieData = {};
+
+for (var i = 0; i < cookies.length; i++) {
+    var parts = cookies[i].split("=");
+    var cookieName = decodeURIComponent(parts[0]);
+    var cookieValue = decodeURIComponent(parts[1]);
+    cookieData[cookieName] = cookieValue;
+}
+
+if (cookieData["mon_cookie"] === "1") {
+    // Rediriger vers la page d'accueil
+    window.location.href = "index.php";
+} else if (cookieData["mon_cookie"] === "2") {
+    // Rediriger vers la page utilisateur
+    window.location.href = "cybersecurity.php";
+} else if (cookieData["mon_cookie"] === "3") {
+    // Rediriger vers la page admin
+    window.location.href = "admin.php";
+}
+ou b-// Lire le cookie "mon_cookie"
+    var cookies = document.cookie.split("; ");
+    var cookieData = {};
+
+    for (var i = 0; i < cookies.length; i++) {
+        var parts = cookies[i].split("=");
+        var cookieName = decodeURIComponent(parts[0]);
+        var cookieValue = decodeURIComponent(parts[1]);
+        cookieData[cookieName] = cookieValue;
+    }
+
+    // Obtenir la valeur du cookie "mon_cookie"
+    var monCookieValue = cookieData["mon_cookie"];
+
+    // Utiliser une structure de contrôle switch pour la redirection
+    switch (monCookieValue) {
+        case "1":
+            // Rediriger vers la page d'accueil
+            window.location.href = "index.php";
+            break;
+        case "2":
+            // Rediriger vers la page utilisateur
+            window.location.href = "cybersecurity.php";
+            break;
+        case "3":
+            // Rediriger vers la page admin
+            window.location.href = "admin.php";
+            break;
+        default:
+            // Si la valeur du cookie n'est pas gérée, faire quelque chose (par exemple, rediriger vers une page d'erreur)
+            window.location.href = "erreur.php";
+            break;
+    }
+Il a ainsi acces a la page admin
+
+2e methode:
+
+Attaque :
+
+il faut faire d'abord  l'authentification ensuite suivre ces étapes:
+
+-Cliquer sur inspect (inspecter le code )
+-Cliquer sur Application dans la barre de menu 
+-Aller sur cookies et cliquer sur http://localhost
+   Vous allez voir a ce niveau les cookies definis sur la session où vous vous trouvez 
+-Copier le cookie de la session
+-aller sur un autre onglet dans le navigateur :
+A partir de la page de connexion aller sur http://localhost(cookies )
+inserer le nom et la valeur de cookie de la session que vous essayer d'acceder .
+ensuite actualiser la page en mettant l'url de la page 
+
+Enfin vous avez reussi .
+
+Solutions:
+
+1-Definir une authentication de la session : 
+voici la commande php:
+<?php
+
+// Vérifier si l'utilisateur est déjà connecté
+if (!isset($_SESSION['username'])) {
+    // Rediriger vers la page de connexion
+    header("Location: login.php");
+    exit;
+}
+
+?>
+
+2-Definir une valeur de cookie aleatoire 
+Voici la commande php:
+$cookie_value = rand(1,1000);
+
+Ensuite hasher l valeur du cookie aleatoire 
+voici la commande :
+$hashed_cookie_value = hash('sha256', $cookie_value);
+
+3-Definir l'expiration de la session 
+$expiration = 60;
+session_set_cookie_params($expiration);
+
+
+challenge.php 
+
+<?php
+session_start();
+//Definir la session "Acceuil"
+$_SESSION['page']='Challenge';
+
+// Définir un cookie
+$cookie_name = "mon_cookie";
+$cookie_value = "5";
+$expiration = time() + 3600; // L'expiration est réglée à 1 heure à partir du temps actuel
+
+setcookie($cookie_name, $cookie_value, $expiration);
+
+$challenges = array(
+    array("web inspect", "challenge1.php", "50"),
+    array("sql injecion",  "lien_vers_le_défi_2"),
+    array("burp",  "lien_vers_le_défi_3"),
+    array("dnfjfnrj", "lien_vers_le_défi_4"),
+   
+);
+
+?>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="menu-bar">Menu</div>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="inscription.php">Inscription</a></li>
+                    <li><a href="connexion.php">Apprendre</a></li>
+                    <li><a href="admin.php">Admin</a></li>
+                    <li><a href="challenge.php">Challenges</a></li>
+                    <li><a href="about.php">À propos</a></li>
+                    <button id="changeLanguage">Changer de Langue</button>
+                </ul>
+            </nav>
+        </div>
+    
+            <div class="content">
+                <h1>Challenges</h1>
+               
+                <div class="challenges">     
+                <?php foreach ($challenges as $challenge): ?>
+            <div class="card">
+            <a href="#" onclick="openPopup('<?php echo $challenge[1]; ?>')"><?php echo $challenge[0]; ?>  <span><?php echo $challenge[2]; ?></span></a>
+            
+            </div>
+    
+        <?php endforeach; ?>
+            
+      
+            </div>
+                </div>
+
+            
+        </div>
+        </div>
+    </div>
+
+    <script>
+   var cookies = document.cookie.split("; ");
+var cookieData = {};
+
+for (var i = 0; i < cookies.length; i++) {
+    var parts = cookies[i].split("=");
+    var cookieName = decodeURIComponent(parts[0]);
+    var cookieValue = decodeURIComponent(parts[1]);
+    cookieData[cookieName] = cookieValue;
+}
+
+var pagePaths = {
+    "1": "index.php",
+    "2": "cybersecurity.php",
+    "3": "admin.php"
+};
+
+if (cookieData["mon_cookie"] in pagePaths) {
+    var targetPage = pagePaths[cookieData["mon_cookie"]];
+    window.location.href = targetPage;
+} else {
+    console.log("La valeur du cookie n'a pas été reconnue.");
+}
+        // JavaScript pour changer la langue (exemple simple)
+        const changeLanguageButton = document.getElementById('changeLanguage');
+        const pageTitle = document.querySelector('h1');
+
+        changeLanguageButton.addEventListener('click', function () {
+            if (pageTitle.textContent === 'Accueil') {
+                pageTitle.textContent = 'Homepage';
+            } else {
+                pageTitle.textContent = 'Accueil';
+            }
+        });
+
+    
+    
+function openPopup(url) {
+    var width = 600; // Largeur de la fenêtre popup
+    var height = 400; // Hauteur de la fenêtre popup
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+
+    window.open(url, 'popup', 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top);
+}
+
+
+    </script>
+</body>
+</html>
+
