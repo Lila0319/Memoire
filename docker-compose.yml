@@ -15,7 +15,7 @@ services:
       - DB_HOST=db
       - DB_NAME=LM
       - DB_USER=root
-      - DB_PASSWORD=Lila
+      - DB_PASSWORD=lila
 
   db:
     image: mysql:5.7
@@ -25,7 +25,7 @@ services:
       - ./lm.sql:/docker-entrypoint-initdb.d/lm.sql
      
     environment:
-      MYSQL_ROOT_PASSWORD: Lila
+      MYSQL_ROOT_PASSWORD: lila
       MYSQL_DATABASE: LM
      
 
