@@ -4,27 +4,28 @@ services:
   web:
     build: .
     image: php:8.0-apache
-    container_name: web_app
+    container_name: Memoire_app
     volumes:
       - .:/var/www/html
     ports:
-      - "8080:80"
+      - "7000:80"
     depends_on:
       - db
     environment:
       - DB_HOST=db
       - DB_NAME=LM
       - DB_USER=root
-      - DB_PASSWORD=
+      - DB_PASSWORD=Lila
 
   db:
     image: mysql:5.7
-    container_name: db
+    container_name: Memoire_db
     volumes:
       - db_data:/var/lib/mysql
+      - ./lm.sql:/docker-entrypoint-initdb.d/lm.sql
      
     environment:
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: Lila
       MYSQL_DATABASE: LM
      
 
