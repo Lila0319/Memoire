@@ -23,7 +23,8 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./lm.sql:/docker-entrypoint-initdb.d/lm.sql
-     
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: lila
       MYSQL_DATABASE: LM
