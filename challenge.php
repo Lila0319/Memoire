@@ -1,7 +1,18 @@
 <?php
 session_start();
-//Définir la session "Accueil"
+require_once 'config.php';
+
 $_SESSION['page'] = 'Challenge';
+
+if (!isset($_SESSION['points'])) {
+    $_SESSION['points'] = 0;
+}
+$user_id = $_SESSION['id_user'];
+
+$stmt = $pdo->prepare("SELECT challenge_name FROM user_challenges WHERE id_user = ? AND status = 'valid'");
+$stmt->execute([$user_id]);
+$validChallenges = $stmt->fetchAll(PDO::FETCH_COLUMN, 0); 
+
 $challenges = array(
     array("cookie variable" , "100", "LILA{adm1in_r0l3_c0ki2j3}"),
     array("account variable" , "100", "LILA{Y0U_aR3_1_M1n1g3r}"),
@@ -24,16 +35,7 @@ $challenges = array(
     array("Lockout Mechanism" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
     array("CAPTCHA" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
     array("Unlock Mechanism" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
+    
     //test
     array("Cookies", "50" ,"LILA{G11L_DJCHVC_BCFBRH}"),
     array("Web inspect",   "50","LILA{eej1L_L1L2VC_djbxnH}"), 
@@ -46,7 +48,7 @@ $challenges = array(
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
 
 </head>
@@ -68,24 +70,30 @@ $challenges = array(
                 </nav>
         <h1>Challenges</h1>
         <div class="challenges">
-            <?php foreach ($challenges as $challenge): ?>
-                <div class="card">
-                   
-                <button onclick="openPopup(<?php echo htmlspecialchars(json_encode($challenge)); ?>, '<?php echo htmlspecialchars($challenge[2]); ?>')">
-    <?php echo htmlspecialchars($challenge[0]); ?>
-    <span><?php echo htmlspecialchars($challenge[1]); ?></span>
-</button>
+        <?php foreach ($challenges as $challenge): ?>
+                <div class="card <?php echo in_array($challenge[0], $validChallenges) ? 'valid' : ''; ?>">
+                    <span class="validation-icon" style="display: <?php echo in_array($challenge[0], $validChallenges) ? 'block' : 'none'; ?>"></span>
+                    <button onclick="openPopup(<?php echo htmlspecialchars(json_encode($challenge)); ?>, '<?php echo htmlspecialchars($challenge[2]); ?>', this)">
+                        <?php echo htmlspecialchars($challenge[0]); ?>
+                        <span><?php echo htmlspecialchars($challenge[1]); ?></span>
+                    </button>
+
 
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="points">
+            <p>Mes Points : <?php echo $_SESSION['points']; ?></p>
+        </div>
     </div>
+    
 </div>
 <div id="popupContainer" style="display: none;"></div>
 <script>
   
     
-    function openPopup(challenge ,correctFlag) {
+    function openPopup(challenge ,correctFlag ,buttonElement) {
+
         var popupContent = `
             <div class="popup-content">
                 <h2>${challenge[0].trim()}</h2>
@@ -168,13 +176,13 @@ $challenges = array(
             <button id="flagSubmitBtn">Vérifier</button>
             <p id="flagResult"></p>
             </div>
-        <button id="closePopupBtn">X</button>
+        <button id="closePopupBtn" class="top-right">X</button>
         </div>`;
         
         var popupContainer = document.getElementById('popupContainer');
         popupContainer.innerHTML = popupContent;
         popupContainer.style.display = 'block';
-        
+
         var width = 600;
         var height = 400;
         var left = (window.innerWidth - width) / 2;
@@ -184,20 +192,37 @@ $challenges = array(
         popupContainer.style.top = top + 'px';
 
         document.getElementById('flagSubmitBtn').addEventListener('click', function() {
-        var flagValue = document.getElementById('flagInput').value;
-        
-      
-        if (flagValue === correctFlag) {
-            document.getElementById('flagResult').textContent = "Flag correct!";
-        } else {
-            document.getElementById('flagResult').textContent = "Flag incorrect!";
+                var flagValue = document.getElementById('flagInput').value;
+                if (flagValue === correctFlag) {
+                    document.getElementById('flagResult').textContent = "Flag correct!";
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "scoreboard.php", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhr.send("points=" + encodeURIComponent(challenge[1]) + "&challenge_name=" + encodeURIComponent(challenge[0]));
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            document.getElementById('flagResult').textContent = "Flag correct!";
+                            buttonElement.parentElement.classList.add('valid');
+                            var validationIcon = buttonElement.querySelector('.validation-icon');
+                            if (validationIcon) {
+                                validationIcon.style.display = 'block';
+                            }
+                        } else {
+                            document.getElementById('flagResult').textContent = "Erreur lors de l'ajout des points.";
+                        }
+                    };
+                } else {
+                    document.getElementById('flagResult').textContent = "Flag incorrect!";
+                }
+            });
+
+            document.getElementById('closePopupBtn').addEventListener('click', function() {
+                popupContainer.style.display = 'none';
+            });
         }
-    });
-    document.getElementById('closePopupBtn').addEventListener('click', function() {
-            popupContainer.style.display = 'none';
-        });
-}
-    
+
+
+
 </script>
 </body>
 </html>

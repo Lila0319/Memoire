@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    min-height: 100vh; 
+    background: white ;
+    
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.horizontal-list a {
+    text-decoration: none;
+    color: #77B5FE;
+}
+
+
+
+.horizontal-list{
+    display: flex ;
+    gap :10px;
+    list-style-type: none;
+    margin:20px;
+}
+.horizontal-list li {
+    display:inline;
+    margin-left:200px;
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-icon {
+    font-size: 100px;
+    color: #333;
+}
+
+.profile-info {
+    flex:1
+    
+}
+
+.profile-info > div {
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+.profile-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.profile-info ul li {
+    margin-bottom: 10px;
+}
+
+.profile-info ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.profile-info ul li a:hover {
+    color: red;
+}

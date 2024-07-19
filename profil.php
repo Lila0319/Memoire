@@ -25,21 +25,13 @@ if (!$user) {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        .profile {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .profile-icon {
-            font-size: 100px;
-            color: #333;
-        }
-        .profile-info {
-            margin-top: 20px;
-        }
-    </style>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="profil.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    
 </head>
 <body>
     <div class="content">
@@ -53,25 +45,32 @@ if (!$user) {
                 <li><a href="profil.php">Mon Profil</a></li>
             </ul>
         </nav>
+        
         <h1>Mon Profil</h1>
         <div class="profile">
             <div class="profile-icon">
                 &#128100; 
             </div>
             <div class="profile-info">
-                <p>Nom : <?php echo htmlspecialchars($user['nom']); ?></p>
-                <p>Prénom : <?php echo htmlspecialchars($user['prenoms']); ?></p>
-                <p>Email : <?php echo htmlspecialchars($user['email']); ?></p>
-                <p>Numéro de téléphone : <?php echo htmlspecialchars($user['numero']); ?></p>
-                <p>Adresse : <?php echo htmlspecialchars($user['adresse']); ?></p>
-                <p>Nom d'utilisateur : <?php echo htmlspecialchars($user['username']); ?></p>
-               <ul> 
-               <li> <a href="edit_profile.php">Modifier le profil</a></li>
-               <li> <a href="change_password.php">Changer le mot de passe</a></li>
-               <li> <a href="logout.php"> Se Deconnecter </a></li>
-               <li> <a href="supprimer_compte.php">Supprimer Mon Compte </a></li>
-    </ul>
-            </div>
+    <div>
+        <p>Nom : <?php echo htmlspecialchars($user['nom']); ?></p>
+        <p>Prénom : <?php echo htmlspecialchars($user['prenoms']); ?></p>
+        <p>Email : <?php echo htmlspecialchars($user['email']); ?></p>
+        <p>Numéro de téléphone : <?php echo htmlspecialchars($user['numero']); ?></p>
+        <p>Adresse : <?php echo htmlspecialchars($user['adresse']); ?></p>
+    </div>
+    <div>
+        <p>Nom d'utilisateur : <?php echo htmlspecialchars($user['username']); ?></p>
+    </div>
+    <div>
+        <ul>
+            <li><a href="edit_profile.php">Modifier le profil</a></li>
+            <li><a href="change_password.php">Changer le mot de passe</a></li>
+            <li><a href="logout.php">Se Déconnecter</a></li>
+            <li><a href="supprimer_compte.php">Supprimer Mon Compte</a></li>
+        </ul>
+    </div>
+    </div>
         </div>
     </div>
 </body>

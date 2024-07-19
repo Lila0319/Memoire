@@ -16,7 +16,9 @@ if (!isset($_SESSION['id_admin'])) {
 <html>
 <head>
     <title>Page d'Administration</title>
-    <link rel="stylesheet" type="text/css" href="../styles.css">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
    
