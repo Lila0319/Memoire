@@ -18,11 +18,11 @@ function checkRole() {
 $role = checkRole();
 
 if ($role == 'admin') {
-    header('Location: ../LM/admin/index.php');
+    header('Location: ../admin/index.php');
     exit();
 }
 if ($role == 'manager') {
-    header('Location: ../LM/mod/index.php');
+    header('Location: ../mod/index.php');
     exit();
 }
 ?>
