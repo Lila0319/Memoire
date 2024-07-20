@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Inclure le fichier de configuration de la base de données
+
 require_once 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

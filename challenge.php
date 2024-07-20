@@ -14,6 +14,7 @@ $stmt->execute([$user_id]);
 $validChallenges = $stmt->fetchAll(PDO::FETCH_COLUMN, 0); 
 
 $challenges = array(
+    
     array("cookie variable" , "100", "LILA{adm1in_r0l3_c0ki2j3}"),
     array("account variable" , "100", "LILA{Y0U_aR3_1_M1n1g3r}"),
     array("hidden files" , "100", "LILA{backups_1ll_f1l3S}"),
@@ -32,9 +33,9 @@ $challenges = array(
     //Authentification
     array("Testing for Default Credentials of Common Applications" , "100", "LILA{def1ulT_Cr3dent1Als_Admin}"),
     array("Testing for Default Password of New Accounts" , "100", "LILA{def1ulT_Cr3dent1Als_newAcompte}"),
-    array("Lockout Mechanism" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("CAPTCHA" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
-    array("Unlock Mechanism" , "100", "LILA{adm1in_shdbf_2hd2j3}"),
+    array("Lockout Mechanism" , "100", "LILA{adm1i3}"),
+    array("CAPTCHA" , "100", "LILA{adm1in_shdbf3}"),
+    array("Unlock Mechanism" , "100", "LILA{adm1}"),
     
     //test
     array("Cookies", "50" ,"LILA{G11L_DJCHVC_BCFBRH}"),
@@ -42,6 +43,7 @@ $challenges = array(
     array("File upload", "100",  "LILA{F1le_UPLOAD_22degu}")
     
 );
+
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +152,7 @@ $challenges = array(
             popupContent += `<h2>Description</h2><p>Peux-tu lister les utilisateurs  ?</p>   `;
         }
         else if (challenge[0] === 'Username Valid') {
-            popupContent += `<h2>Description</h2><p>Pex-tu lister les admins  ?</p>   `;
+            popupContent += `<h2>Description</h2><p>Peux-tu lister les admins  ?</p>   `;
         }
         else if (challenge[0] === 'Testing for Weak or Unenforced Username Policy') {
             popupContent += `<h2>Description</h2><p>Trouve le Flag . Cliquez donc sur <a href="challenge2.php">ceci</a></p>   `;
@@ -159,7 +161,7 @@ $challenges = array(
             popupContent += `<h2>Description</h2><p>Connecte toi a l'admin avec des comptes par defaut et trouve le flag </p>   `;
         }
         else if (challenge[0] === 'Testing for Default Password of New Accounts') {
-            popupContent += `<h2>Description</h2><p>Trouve le Flag . Cliquez donc sur <a href="inscription2.php">ceci</a></p>   `;
+            popupContent += `<h2>Description</h2><p>Trouve le Flag . Cliquez donc sur <a href="connexion2.php">ceci</a></p>   `;
         }
         else if (challenge[0] === 'Lockout Mechanism') {
             popupContent += `<h2>Description</h2><p>évaluer le mécanisme de verrouillage de compte et la sécurité du CAPTCHA.</p>   `;
