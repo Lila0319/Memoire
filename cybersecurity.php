@@ -43,25 +43,26 @@ if (!isset($_SESSION['page'])) {
             </ul>
         </nav>
         <h1>Cours de Sécurité Informatique</h1>
-        <p style="color: black;">Bienvenue dans notre cours de sécurité informatique. Découvrez nos cours ci-dessous :</p>
+        <p style="color: black;">Découvrez nos propositions de solutions faces aux failles soulignes par le WSTG v4.2  :</p>
 
       
         <div class="cours-container">
            
             <div class="cours">
-                <h2>1. Introduction à la sécurité informatique</h2>
-                <p>Contenu du cours sur l'introduction à la sécurité informatique...</p>
+                <h2>OUTILS DE PENTEST  WEB </h2>
+                <a href="https://owasp.org/www-project-web-security-testing-guide/v42/6-Appendix/A-Testing_Tools_Resource">
+                    Ici vous avez les outils dont vous aurez besoins pour les tests de securite web selon le WSTG v4.2 </a>
             </div>
 
            
             <div class="cours">
-                <h2>2. Cryptographie et chiffrement</h2>
-                <p>Contenu du cours sur la cryptographie et le chiffrement...</p>
+                <h2>ESCALADE DE PRIVILEGES</h2>
+                <a href="https://www.crowdstrike.fr/cybersecurity-101/privilege-escalation/">L'Escalade de privilèges ..</a>
             </div>
 
             
             <div class="cours">
-                <h2>3. Gestion des mots de passe</h2>
+                <h2>Insecure Direct Object References (IDOR)</h2>
                 <p>Contenu du cours sur la gestion des mots de passe...</p>
             </div>
 
@@ -85,7 +86,7 @@ if (!isset($_SESSION['page'])) {
         </div>
 
         
-        <p><a href="autres_cours.php" style="color: #77B5FE;">Cours supplémentaires</a></p>
+        
     </div>
 </body>
 </html>
