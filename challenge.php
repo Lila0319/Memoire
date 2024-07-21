@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once 'config.php';
-
+if (!isset($_SESSION['id_user'])) {
+    header('Location: connexion.php');
+    exit;
+}
 $_SESSION['page'] = 'Challenge';
 
 if (!isset($_SESSION['points'])) {
