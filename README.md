@@ -14,7 +14,7 @@ Si la commande est validée vous pouvez acceder a l'application sur un navigateu
 
 2- Acceder a Mysql :
 
-docker exec -it Memoire_db mysql -h 127.0.0.1 -P 3306  -u root -p
+docker exec -it Memoire_db mysql -h db -P 3306 -u root -p
 
 Mot de passe : lila
 
