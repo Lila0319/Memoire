@@ -178,3 +178,12 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE `user_challenges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `challenge_name` varchar(255) NOT NULL,
+  `points` int(11) NOT NULL,
+  `status` enum('valid', 'invalid') DEFAULT 'invalid',
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_user`) REFERENCES `users`(`id_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
